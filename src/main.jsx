@@ -252,6 +252,42 @@ const treatments = [
   }
 ];
 
+
+const visualEvidenceImages = [
+  {
+    title: "Neuroimmune Type 2 Immunity at the Systems Level",
+    category: "Systems-level map",
+    description:
+      "A whole-body view showing peripheral triggers, type 2 immune activation, neuronal sensing, central brain processing, autonomic output, tissue responses, and repair resolution.",
+    src: "/images/neuroimmune-systems.jpg",
+    colour: "#38bdf8"
+  },
+  {
+    title: "Neuroimmune Type 2 Immunity at the Molecular Level",
+    category: "Molecular mechanism map",
+    description:
+      "A mechanistic view showing alarmins, ILC2s, TH2 cells, mast cells, IgE, cytokines, neuronal receptors, neuropeptides, neurotransmitters, and repair pathways.",
+    src: "/images/neuroimmune-molecular.jpeg",
+    colour: "#a78bfa"
+  }
+];
+
+
+const appImages = [
+  {
+    title: "Systems-level neuroimmune map",
+    description: "Whole-body view of type 2 immunity, neural sensing, brain processing, autonomic output, tissue response, and repair.",
+    src: "/images/neuroimmune-systems.jpg",
+    colour: "#38bdf8"
+  },
+  {
+    title: "Molecular-level neuroimmune map",
+    description: "Molecular mechanism view of alarmins, cytokines, ILC2s, TH2 cells, mast cells, IgE, neurons, neuropeptides, and repair pathways.",
+    src: "/images/neuroimmune-molecular.jpeg",
+    colour: "#a78bfa"
+  }
+];
+
 const baselineState = {
   allergenLoad: 55,
   epithelialDamage: 45,
@@ -515,10 +551,12 @@ function App() {
       <nav className="tabs">
         {[
           ["overview", "Overview", Network],
+          ["images", "Images", Microscope],
           ["circuits", "Organ circuits", CircleDot],
           ["simulator", "Simulator", Activity],
           ["3d", "3D analytics", Atom],
           ["visuals", "Animated visuals", Sparkles],
+          ["gallery", "Image gallery", Microscope],
           ["biomarkers", "Biomarkers", TestTube2],
           ["treatments", "Treatment logic", Shield],
           ["evidence", "Evidence links", BookOpen],
@@ -608,6 +646,47 @@ function App() {
                     <Bar dataKey="allergy" name="Allergy" fill="url(#gAllergy)" radius={[10, 10, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
+              </div>
+            </Card>
+          </Section>
+        )}
+
+
+        {activeTab === "images" && (
+          <Section key="images">
+            <Card title="Neuroimmune image gallery" icon={Microscope}>
+              <p>
+                These figures summarize the neuroimmune type 2 immunity concept at the systems and molecular levels.
+                Click each image to open it full size.
+              </p>
+
+              <div className="appImageGrid">
+                {appImages.map((img, i) => (
+                  <motion.a
+                    key={img.title}
+                    href={img.src}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="appImageCard"
+                    style={{ "--img": img.colour }}
+                    whileHover={{ y: -8, scale: 1.015 }}
+                    whileTap={{ scale: 0.98 }}
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.08 }}
+                  >
+                    <div className="appImageWrap">
+                      <img src={img.src} alt={img.title} />
+                    </div>
+                    <div className="appImageText">
+                      <h3>{img.title}</h3>
+                      <p>{img.description}</p>
+                      <strong>
+                        Open full-size image <ExternalLink size={14} />
+                      </strong>
+                    </div>
+                  </motion.a>
+                ))}
               </div>
             </Card>
           </Section>
@@ -1156,6 +1235,66 @@ function App() {
           </Section>
         )}
 
+
+
+        {activeTab === "gallery" && (
+          <Section key="gallery">
+            <Card title="Neuroimmune visual evidence gallery" icon={Microscope}>
+              <p>
+                These two white-background scientific figures summarize the same app concept at two different levels:
+                one at the systems level and one at the molecular level. Click any image to open it full size in a new tab.
+              </p>
+
+              <div className="visualEvidenceGrid">
+                {visualEvidenceImages.map((img, i) => (
+                  <motion.a
+                    key={img.title}
+                    href={img.src}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="visualEvidenceCard"
+                    style={{ "--visual": img.colour }}
+                    whileHover={{ y: -8, scale: 1.012 }}
+                    whileTap={{ scale: 0.98 }}
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.08 }}
+                  >
+                    <div className="visualEvidenceImageWrap">
+                      <img src={img.src} alt={img.title} />
+                    </div>
+                    <div className="visualEvidenceText">
+                      <span>{img.category}</span>
+                      <h3>{img.title}</h3>
+                      <p>{img.description}</p>
+                      <strong>
+                        Open full-size image <ExternalLink size={14} />
+                      </strong>
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
+            </Card>
+
+            <div className="grid two">
+              <Card title="How to use the systems-level figure" icon={Network}>
+                <p>
+                  Use this figure for teaching whole-body neuroimmune communication. It is ideal for explaining
+                  how allergens, epithelial barriers, immune cells, nerves, brain regions, autonomic pathways,
+                  tissue symptoms, and repair responses form one connected system.
+                </p>
+              </Card>
+
+              <Card title="How to use the molecular-level figure" icon={Dna}>
+                <p>
+                  Use this figure for mechanistic explanation. It is useful for discussing IL-33, IL-25, TSLP,
+                  IL-4, IL-5, IL-13, IL-31, IgE, FcεRI, mast-cell mediators, neuronal cytokine receptors,
+                  neuropeptides, neurotransmitters, and repair mediators.
+                </p>
+              </Card>
+            </div>
+          </Section>
+        )}
 
         {activeTab === "ecosystem" && (
           <Section key="ecosystem">
