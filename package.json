@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@react-three/drei": "latest",
+    "@react-three/fiber": "latest",
+    "@tailwindcss/vite": "latest",
+    "framer-motion": "latest",
+    "lucide-react": "latest",
+    "plotly.js": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-plotly.js": "latest",
+    "recharts": "latest",
+    "three": "latest"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "tailwindcss": "latest"
+  }
+}

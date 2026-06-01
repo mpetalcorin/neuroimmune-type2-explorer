@@ -1,0 +1,496 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  padding: 28px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.app.dark {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(124, 58, 237, 0.32), transparent 34%),
+    radial-gradient(circle at 85% 15%, rgba(14, 165, 233, 0.26), transparent 30%),
+    linear-gradient(135deg, #020617, #111827 45%, #0f172a);
+  color: #e5e7eb;
+}
+
+.app.light {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(196, 181, 253, 0.55), transparent 34%),
+    radial-gradient(circle at 85% 15%, rgba(125, 211, 252, 0.45), transparent 30%),
+    linear-gradient(135deg, #f8fafc, #eef2ff 45%, #e0f2fe);
+  color: #0f172a;
+}
+
+.bg-orb {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(40px);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: drift 14s infinite alternate ease-in-out;
+}
+
+.orb1 {
+  width: 320px;
+  height: 320px;
+  background: #8b5cf6;
+  left: -80px;
+  top: 100px;
+}
+
+.orb2 {
+  width: 260px;
+  height: 260px;
+  background: #06b6d4;
+  right: -70px;
+  top: 300px;
+  animation-delay: 2s;
+}
+
+.orb3 {
+  width: 260px;
+  height: 260px;
+  background: #fb7185;
+  left: 45%;
+  bottom: -90px;
+  animation-delay: 4s;
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(40px, -35px, 0) scale(1.12);
+  }
+}
+
+.hero,
+.section,
+.tabs,
+footer {
+  position: relative;
+  z-index: 2;
+}
+
+.hero {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.heroText,
+.heroCanvas,
+.card,
+.metric,
+.organCard,
+.miniLesson {
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 24px 70px rgba(2, 6, 23, 0.3);
+  backdrop-filter: blur(18px);
+}
+
+.dark .heroText,
+.dark .heroCanvas,
+.dark .card,
+.dark .metric,
+.dark .organCard,
+.dark .miniLesson {
+  background: rgba(15, 23, 42, 0.68);
+}
+
+.light .heroText,
+.light .heroCanvas,
+.light .card,
+.light .metric,
+.light .organCard,
+.light .miniLesson {
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.heroText {
+  border-radius: 32px;
+  padding: 42px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  color: #67e8f9;
+  background: rgba(8, 47, 73, 0.35);
+}
+
+.light .badge {
+  background: rgba(224, 242, 254, 0.9);
+  color: #0369a1;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 6vw, 5.8rem);
+  line-height: 0.94;
+  margin: 26px 0;
+  letter-spacing: -0.07em;
+}
+
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+}
+
+p,
+li {
+  color: inherit;
+  opacity: 0.86;
+  line-height: 1.7;
+}
+
+.heroText p {
+  font-size: 1.08rem;
+  max-width: 850px;
+}
+
+.heroButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.heroButtons button,
+.wideBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 17px;
+  border-radius: 16px;
+  color: #020617;
+  background: linear-gradient(135deg, #67e8f9, #a78bfa);
+  font-weight: 900;
+  box-shadow: 0 14px 35px rgba(14, 165, 233, 0.3);
+}
+
+.heroButtons .secondary,
+.wideBtn {
+  background: rgba(148, 163, 184, 0.14);
+  color: inherit;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  box-shadow: none;
+}
+
+.heroCanvas {
+  min-height: 520px;
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+.tabs {
+  max-width: 1400px;
+  margin: 24px auto;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  background: rgba(148, 163, 184, 0.14);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  padding: 11px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.tabs button.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(167, 139, 250, 0.35));
+  border-color: rgba(125, 211, 252, 0.7);
+}
+
+.section {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card {
+  border-radius: 26px;
+  padding: 24px;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.cardTitle h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.metric {
+  padding: 22px;
+  border-radius: 24px;
+}
+
+.metric span {
+  display: block;
+  opacity: 0.75;
+  font-weight: 800;
+}
+
+.metric strong {
+  display: block;
+  font-size: 3rem;
+  letter-spacing: -0.05em;
+  margin: 8px 0;
+}
+
+.meter {
+  height: 10px;
+  background: rgba(148, 163, 184, 0.18);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.meter div {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #a78bfa, #fb7185);
+  border-radius: 999px;
+}
+
+.chartBox {
+  width: 100%;
+  min-height: 300px;
+}
+
+.organGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.organCard {
+  color: inherit;
+  text-align: left;
+  border-radius: 24px;
+  padding: 20px;
+  min-height: 230px;
+  border-color: rgba(148, 163, 184, 0.24);
+}
+
+.organCard svg {
+  color: var(--accent);
+}
+
+.organCard h3 {
+  margin: 12px 0 8px;
+}
+
+.activeOrgan {
+  outline: 2px solid var(--accent);
+  box-shadow: 0 24px 80px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 18px;
+}
+
+.chips span {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.16);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.circuit {
+  min-height: 350px;
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--accent) 28%, transparent), transparent 25%),
+    radial-gradient(circle at 70% 50%, rgba(56, 189, 248, 0.2), transparent 25%),
+    rgba(148, 163, 184, 0.08);
+}
+
+.node {
+  position: absolute;
+  width: 132px;
+  height: 132px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-weight: 900;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.immune {
+  left: 8%;
+  top: 20%;
+  background: color-mix(in srgb, var(--accent) 50%, #020617);
+}
+
+.nerve {
+  right: 9%;
+  top: 20%;
+  background: rgba(14, 165, 233, 0.45);
+}
+
+.brain {
+  left: 36%;
+  bottom: 18%;
+  background: rgba(167, 139, 250, 0.45);
+}
+
+.signal {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 22px var(--accent);
+}
+
+.s1 {
+  left: 25%;
+  top: 36%;
+}
+
+.s2 {
+  right: 25%;
+  top: 51%;
+}
+
+.circuit p {
+  position: absolute;
+  bottom: 18px;
+  left: 22px;
+  right: 22px;
+  margin: 0;
+}
+
+.slider {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.slider div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+  font-weight: 800;
+}
+
+.slider input {
+  width: 100%;
+  accent-color: #38bdf8;
+}
+
+.wideBtn {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.decision {
+  border-radius: 22px;
+  padding: 22px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(167, 139, 250, 0.14));
+  border: 1px solid rgba(148, 163, 184, 0.26);
+}
+
+.miniLesson {
+  border-radius: 24px;
+  padding: 22px;
+}
+
+footer {
+  max-width: 1400px;
+  margin: 30px auto 0;
+  opacity: 0.76;
+  text-align: center;
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .grid.two,
+  .grid.three,
+  .organGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .app {
+    padding: 16px;
+  }
+
+  .heroText {
+    padding: 28px;
+  }
+
+  .heroCanvas {
+    min-height: 420px;
+  }
+
+  .tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+  }
+
+  .tabs button {
+    white-space: nowrap;
+  }
+}
