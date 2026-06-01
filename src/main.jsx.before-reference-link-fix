@@ -71,10 +71,10 @@ import "./style.css";
 
 const evidenceLinks = [
   {
-    title: "PubMed search: nervous system and type 2 immunity cross-regulation",
-    topic: "Nervous system and type 2 immunity",
-    url: "https://pubmed.ncbi.nlm.nih.gov/?term=" + encodeURIComponent('("type 2 immunity" OR "type 2 immune") AND (nervous system OR neurons OR neuroimmune OR neuroimmunology)'),
-    note: "Reviews and primary studies on how type 2 cytokines, mast cells, IgE, neurons, neuropeptides, and brain circuits interact."
+    title: "Uploaded Science Immunology review",
+    topic: "Nervous system and type 2 immunity cross-regulation",
+    url: "#local-review",
+    note: "Core source for this app. It reviews how type 2 cytokines, mast cells, IgE, neurons, neuropeptides, and brain circuits interact."
   },
   {
     title: "PubMed search: neuroimmune type 2 immunity IL-33 IL-4 IL-13",
@@ -1024,21 +1024,11 @@ function App() {
               </div>
               <div className="evidenceGrid">
                 {evidenceLinks.map((e) => (
-                  <motion.a
-                    whileHover={{ y: -5, scale: 1.01 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="evidenceCard"
-                    key={e.title}
-                    href={e.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <motion.a whileHover={{ y: -5 }} className="evidenceCard" key={e.title} href={e.url} target={e.url.startsWith("#") ? "_self" : "_blank"} rel="noreferrer">
                     <h3>{e.title}</h3>
                     <strong>{e.topic}</strong>
                     <p>{e.note}</p>
-                    <span className="evidenceButton">
-                      Open PubMed evidence <ExternalLink size={14} />
-                    </span>
+                    <span>Open evidence <ExternalLink size={14} /></span>
                   </motion.a>
                 ))}
               </div>
