@@ -343,12 +343,6 @@ function App() {
   const [state, setState] = useState(baselineState);
   const [activeTab, setActiveTab] = useState("overview");
 
-  React.useEffect(() => {
-    const handler = (event) => setActiveTab(event.detail);
-    window.addEventListener("open-neuroimmune-tab", handler);
-    return () => window.removeEventListener("open-neuroimmune-tab", handler);
-  }, []);
-
   const model = useMemo(() => computeModel(state), [state]);
 
   const radarData = [
@@ -487,7 +481,7 @@ function App() {
                   form an integrated communication network.
                 </p>
                 <p>
-                  This app describes bidirectional control: immune signals influence
+                  The uploaded Science Immunology review describes bidirectional control: immune signals influence
                   neurons, while neurons release neurotransmitters and neuropeptides that amplify or suppress type 2
                   immunity.
                 </p>
@@ -1171,37 +1165,12 @@ function Card({ title, icon: Icon, children }) {
 }
 
 function Feature({ icon: Icon, title, text }) {
-  const actions = {
-    "Clinical explanation": "education",
-    "Research design": "hypotheses",
-    "Drug discovery": "treatments",
-    "Teaching": "visuals"
-  };
-
-  const tab = actions[title] || "overview";
-
   return (
-    <motion.button
-      type="button"
-      className="feature featureButton"
-      whileHover={{ y: -8, scale: 1.025 }}
-      whileTap={{ scale: 0.97 }}
-      onClick={() => {
-        const event = new CustomEvent("open-neuroimmune-tab", { detail: tab });
-        window.dispatchEvent(event);
-      }}
-    >
-      <div className="featureGlow" />
-      <div className="featureIcon">
-        <Icon size={24} />
-      </div>
+    <div className="feature">
+      <Icon size={22} />
       <h3>{title}</h3>
       <p>{text}</p>
-      <span className="featureCTA">
-        Open module
-        <ExternalLink size={14} />
-      </span>
-    </motion.button>
+    </div>
   );
 }
 
