@@ -292,66 +292,6 @@ const pathwayRibbons = [
   { from: "IL-33/ST2", to: "Microglial cleanup", strength: 78, colour: "#34d399" }
 ];
 
-const ecosystemLinks = [
-  {
-    title: "aAidea",
-    category: "Main website",
-    description: "AI, machine learning, scientific software, drug discovery, and biomedical innovation portfolio.",
-    url: "https://a-aidea.com",
-    colour: "#22d3ee"
-  },
-  {
-    title: "RepairMet Explorer",
-    category: "DNA repair and cancer metabolism",
-    description: "Links DNA repair, replication stress, and metabolic vulnerability into an explainable decision-support workflow.",
-    url: "https://repairmet-explorer.vercel.app/",
-    colour: "#a78bfa"
-  },
-  {
-    title: "Cancer Energy Systems Studio",
-    category: "Cancer metabolism",
-    description: "Explores tumour energy demand, metabolic vulnerability, and treatment-exploitation logic.",
-    url: "https://cancer-energy-systems-studio.vercel.app",
-    colour: "#fb7185"
-  },
-  {
-    title: "Protein Fit-Lock Studio",
-    category: "Protein interaction design",
-    description: "Visual platform for protein shape complementarity, molecular recognition, and binding-interface thinking.",
-    url: "https://protein-fit-lock-studio.vercel.app",
-    colour: "#34d399"
-  },
-  {
-    title: "Context SL Explorer",
-    category: "Synthetic lethality",
-    description: "Explores context-specific synthetic lethality and therapeutic vulnerability mapping.",
-    url: "https://context-sl-explorer.vercel.app",
-    colour: "#facc15"
-  },
-  {
-    title: "ALT Vulnerability Map",
-    category: "Telomere biology",
-    description: "Maps alternative lengthening of telomeres biology and therapeutic vulnerabilities.",
-    url: "https://alt-vulnmap.vercel.app/",
-    colour: "#f97316"
-  },
-  {
-    title: "RNA-seq Insight Studio",
-    category: "Transcriptomics",
-    description: "Interactive RNA-seq analysis and biological interpretation platform.",
-    url: "https://rnaseq-insight-studio.vercel.app",
-    colour: "#60a5fa"
-  },
-  {
-    title: "ChemBio Target Prioritisation Studio",
-    category: "Drug discovery",
-    description: "Prioritises chemical biology targets using translational and mechanistic scoring.",
-    url: "https://chembio-target-prioritisation-studi.vercel.app",
-    colour: "#e879f9"
-  }
-];
-
-
 
 function clamp(v, min = 0, max = 100) {
   return Math.max(min, Math.min(max, v));
@@ -522,7 +462,6 @@ function App() {
           ["biomarkers", "Biomarkers", TestTube2],
           ["treatments", "Treatment logic", Shield],
           ["evidence", "Evidence links", BookOpen],
-          ["ecosystem", "aAidea apps", ExternalLink],
           ["hypotheses", "Hypothesis engine", Lightbulb],
           ["education", "Layman mode", Info]
         ].map(([id, label, Icon]) => (
@@ -1156,59 +1095,6 @@ function App() {
           </Section>
         )}
 
-
-        {activeTab === "ecosystem" && (
-          <Section key="ecosystem">
-            <Card title="aAidea ecosystem and related scientific apps" icon={ExternalLink}>
-              <p>
-                Explore the wider aAidea scientific software ecosystem. These apps connect neuroimmunology,
-                cancer metabolism, DNA repair, telomere biology, protein recognition, transcriptomics, and drug discovery
-                into a broader translational research portfolio.
-              </p>
-
-              <div className="ecosystemHero">
-                <div>
-                  <span>aAidea scientific app network</span>
-                  <h3>From neuroimmune circuits to cancer metabolism, DNA repair, and AI-guided discovery</h3>
-                  <p>
-                    Use these links as a connected portfolio of interactive scientific tools for education,
-                    translational thinking, hypothesis generation, and research communication.
-                  </p>
-                </div>
-                <a href="https://a-aidea.com" target="_blank" rel="noreferrer">
-                  Visit aAidea website <ExternalLink size={16} />
-                </a>
-              </div>
-
-              <div className="ecosystemGrid">
-                {ecosystemLinks.map((app, i) => (
-                  <motion.a
-                    key={app.title}
-                    href={app.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="ecosystemCard"
-                    style={{ "--eco": app.colour }}
-                    whileHover={{ y: -8, scale: 1.015 }}
-                    whileTap={{ scale: 0.98 }}
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.04 }}
-                  >
-                    <div className="ecoOrb" />
-                    <span>{app.category}</span>
-                    <h3>{app.title}</h3>
-                    <p>{app.description}</p>
-                    <strong>
-                      Open app <ExternalLink size={14} />
-                    </strong>
-                  </motion.a>
-                ))}
-              </div>
-            </Card>
-          </Section>
-        )}
-
         {activeTab === "education" && (
           <Section key="education">
             <Card title="Layman explanation" icon={Info}>
@@ -1249,12 +1135,6 @@ function App() {
       </AnimatePresence>
 
       <footer>
-        <div className="footerLinks">
-          <a href="https://a-aidea.com" target="_blank" rel="noreferrer">aAidea website <ExternalLink size={13} /></a>
-          <a href="https://repairmet-explorer.vercel.app/" target="_blank" rel="noreferrer">RepairMet Explorer <ExternalLink size={13} /></a>
-          <a href="https://cancer-energy-systems-studio.vercel.app" target="_blank" rel="noreferrer">Cancer Energy Systems <ExternalLink size={13} /></a>
-          <a href="https://protein-fit-lock-studio.vercel.app" target="_blank" rel="noreferrer">Protein Fit-Lock <ExternalLink size={13} /></a>
-        </div>
         <p>
           Educational research app. Not medical advice. Built from peer-reviewed neuroimmunology concepts for teaching,
           hypothesis generation, translational analysis, and public scientific communication.
