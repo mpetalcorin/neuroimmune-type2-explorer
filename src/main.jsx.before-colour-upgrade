@@ -60,11 +60,7 @@ import {
   ScatterChart,
   Scatter,
   ZAxis,
-  Cell,
-  RadialBarChart,
-  RadialBar,
-  Legend,
-  Treemap
+  Cell
 } from "recharts";
 import Plot from "react-plotly.js";
 import "./style.css";
@@ -79,43 +75,43 @@ const evidenceLinks = [
   {
     title: "PubMed search: neuroimmune type 2 immunity IL-33 IL-4 IL-13",
     topic: "General neuroimmune evidence",
-    url: "https://pubmed.ncbi.nlm.nih.gov/?term=%28neuroimmune%20OR%20%22neuro-immune%22%20OR%20neuroimmunology%29%20AND%20%28%22type%202%20immunity%22%20OR%20IL-33%20OR%20IL-4%20OR%20IL-13%29",
+    url: "https://pubmed.ncbi.nlm.nih.gov/?term=neuroimmune+type+2+immunity+IL-33+IL-4+IL-13",
     note: "Searches peer-reviewed biomedical literature on type 2 cytokines and nervous-system communication."
   },
   {
     title: "PubMed search: IL-31 itch sensory neurons",
     topic: "Itch and dermatitis",
-    url: "https://pubmed.ncbi.nlm.nih.gov/?term=%28IL-31%20OR%20interleukin-31%29%20AND%20%28itch%20OR%20pruritus%29%20AND%20%28neuron%20OR%20sensory%29",
+    url: "https://pubmed.ncbi.nlm.nih.gov/?term=IL-31+itch+sensory+neurons",
     note: "Covers cytokine-driven itch, sensory neuron firing, and atopic dermatitis mechanisms."
   },
   {
     title: "PubMed search: IL-33 Alzheimer microglia amyloid",
     topic: "Ageing and Alzheimer’s models",
-    url: "https://pubmed.ncbi.nlm.nih.gov/?term=%28IL-33%20OR%20interleukin-33%29%20AND%20%28Alzheimer%20OR%20amyloid%20OR%20microglia%29",
+    url: "https://pubmed.ncbi.nlm.nih.gov/?term=IL-33+Alzheimer+microglia+amyloid",
     note: "Focuses on IL-33, microglial phagocytosis, amyloid clearance, and cognition in experimental models."
   },
   {
     title: "PubMed search: ILC2 brain injury spinal cord stroke",
     topic: "Brain injury and repair",
-    url: "https://pubmed.ncbi.nlm.nih.gov/?term=%28ILC2%20OR%20%22type%202%20innate%20lymphoid%22%29%20AND%20%28%22brain%20injury%22%20OR%20stroke%20OR%20%22spinal%20cord%20injury%22%29",
+    url: "https://pubmed.ncbi.nlm.nih.gov/?term=ILC2+brain+injury+spinal+cord+stroke",
     note: "Explores type 2 innate lymphoid cells, regulatory immune cells, and CNS injury repair."
   },
   {
     title: "PubMed search: vagus nerve asthma allergy neuroimmune",
     topic: "Airway neuroimmune regulation",
-    url: "https://pubmed.ncbi.nlm.nih.gov/?term=%28vagus%20OR%20vagal%20OR%20sensory%20neuron%29%20AND%20%28asthma%20OR%20allergy%20OR%20allergic%29",
+    url: "https://pubmed.ncbi.nlm.nih.gov/?term=vagus+nerve+asthma+allergy+neuroimmune",
     note: "Shows how airway sensory and autonomic circuits influence asthma and allergic responses."
   },
   {
     title: "PubMed search: mast cell IgE food allergy avoidance behavior",
     topic: "Food allergy and behaviour",
-    url: "https://pubmed.ncbi.nlm.nih.gov/?term=%28%22food%20allergy%22%20OR%20allergen%29%20AND%20%28mast%20cell%20OR%20IgE%29%20AND%20%28avoidance%20OR%20behavior%20OR%20aversion%29",
+    url: "https://pubmed.ncbi.nlm.nih.gov/?term=mast+cell+IgE+food+allergy+avoidance+behavior",
     note: "Links mast cells, IgE, food allergens, brain activation, and avoidance behaviour."
   },
   {
     title: "PubMed search: neuromedin U ILC2 eosinophil allergy",
     topic: "Neuropeptide immune control",
-    url: "https://pubmed.ncbi.nlm.nih.gov/?term=%28%22neuromedin%20U%22%20OR%20NMU%29%20AND%20%28ILC2%20OR%20eosinophil%20OR%20allergy%29",
+    url: "https://pubmed.ncbi.nlm.nih.gov/?term=neuromedin+U+ILC2+eosinophil+allergy",
     note: "Examines NMU as a neuropeptide amplifier of type 2 immunity."
   }
 ];
@@ -135,7 +131,7 @@ const organs = [
     risk: "Chronic itch, sleep disruption, skin barrier breakdown, inflammatory amplification",
     treatment:
       "JAK inhibitors and IL-4/IL-13 pathway blockers may reduce symptoms partly by calming cytokine-sensitive nerves.",
-    link: "https://pubmed.ncbi.nlm.nih.gov/?term=%28IL-31%20OR%20interleukin-31%29%20AND%20%28itch%20OR%20pruritus%20OR%20%22atopic%20dermatitis%22%29"
+    link: "https://pubmed.ncbi.nlm.nih.gov/?term=IL-31+itch+atopic+dermatitis+sensory+neurons"
   },
   {
     id: "lung",
@@ -151,7 +147,7 @@ const organs = [
     risk: "Wheeze, cough, airway narrowing, mucus overproduction, exacerbation risk",
     treatment:
       "Future asthma strategies may combine immune modulation with neuroimmune circuit control.",
-    link: "https://pubmed.ncbi.nlm.nih.gov/?term=%28asthma%20OR%20airway%29%20AND%20%28ILC2%20OR%20IL-33%20OR%20IL-13%29%20AND%20%28vagus%20OR%20vagal%20OR%20neuron%29"
+    link: "https://pubmed.ncbi.nlm.nih.gov/?term=asthma+ILC2+vagus+nerve+IL-33+IL-13"
   },
   {
     id: "gut",
@@ -167,7 +163,7 @@ const organs = [
     risk: "Food avoidance, anaphylaxis risk, gut discomfort, learned aversion",
     treatment:
       "Food allergy may require both immune tolerance strategies and understanding of learned avoidance circuits.",
-    link: "https://pubmed.ncbi.nlm.nih.gov/?term=%28%22food%20allergy%22%20OR%20allergen%29%20AND%20%28IgE%20OR%20mast%20cell%29%20AND%20%28avoidance%20OR%20aversion%20OR%20behavior%29"
+    link: "https://pubmed.ncbi.nlm.nih.gov/?term=food+allergy+IgE+mast+cell+avoidance+behavior"
   },
   {
     id: "brain",
@@ -183,7 +179,7 @@ const organs = [
     risk: "Cognitive decline, poor repair, excessive inflammatory damage, impaired debris clearance",
     treatment:
       "In selected brain injury or ageing contexts, boosting repair-like type 2 signals is an experimental therapeutic idea.",
-    link: "https://pubmed.ncbi.nlm.nih.gov/?term=%28IL-33%20OR%20interleukin-33%29%20AND%20%28microglia%20OR%20Alzheimer%20OR%20amyloid%20OR%20%22brain%20injury%22%29"
+    link: "https://pubmed.ncbi.nlm.nih.gov/?term=IL-33+microglia+Alzheimer+amyloid+brain+injury"
   }
 ];
 
@@ -212,7 +208,7 @@ const treatments = [
     nerveEffect: 72,
     repairConcern: 45,
     maturity: 92,
-    link: "https://pubmed.ncbi.nlm.nih.gov/?term=%28dupilumab%20OR%20IL-4Ralpha%20OR%20IL-4R%29%20AND%20%28atopic%20dermatitis%20OR%20asthma%20OR%20IL-13%29"
+    link: "https://pubmed.ncbi.nlm.nih.gov/?term=dupilumab+IL-4R%CE%B1+IL-13+atopic+dermatitis+asthma"
   },
   {
     name: "JAK1 pathway inhibition",
@@ -221,7 +217,7 @@ const treatments = [
     nerveEffect: 86,
     repairConcern: 52,
     maturity: 76,
-    link: "https://pubmed.ncbi.nlm.nih.gov/?term=%28JAK%20inhibitor%20OR%20JAK1%29%20AND%20%28itch%20OR%20pruritus%20OR%20atopic%20dermatitis%29"
+    link: "https://pubmed.ncbi.nlm.nih.gov/?term=JAK1+inhibitor+itch+atopic+dermatitis+sensory+neuron"
   },
   {
     name: "Anti-IgE or mast-cell axis",
@@ -230,7 +226,7 @@ const treatments = [
     nerveEffect: 58,
     repairConcern: 36,
     maturity: 80,
-    link: "https://pubmed.ncbi.nlm.nih.gov/?term=%28%22anti-IgE%22%20OR%20omalizumab%20OR%20IgE%29%20AND%20%28mast%20cell%20OR%20food%20allergy%20OR%20asthma%29"
+    link: "https://pubmed.ncbi.nlm.nih.gov/?term=anti-IgE+mast+cell+food+allergy+asthma"
   },
   {
     name: "IL-33/ST2 repair-axis modulation",
@@ -239,7 +235,7 @@ const treatments = [
     nerveEffect: 48,
     repairConcern: 88,
     maturity: 28,
-    link: "https://pubmed.ncbi.nlm.nih.gov/?term=%28IL-33%20OR%20ST2%20OR%20IL1RL1%29%20AND%20%28brain%20injury%20OR%20Alzheimer%20OR%20microglia%29"
+    link: "https://pubmed.ncbi.nlm.nih.gov/?term=IL-33+ST2+brain+injury+Alzheimer+microglia"
   },
   {
     name: "Neuropeptide circuit tuning",
@@ -248,7 +244,7 @@ const treatments = [
     nerveEffect: 91,
     repairConcern: 64,
     maturity: 20,
-    link: "https://pubmed.ncbi.nlm.nih.gov/?term=%28neuropeptide%20OR%20NMU%20OR%20CGRP%29%20AND%20%28ILC2%20OR%20%22type%202%20immunity%22%20OR%20allergy%29"
+    link: "https://pubmed.ncbi.nlm.nih.gov/?term=neuropeptide+ILC2+type+2+immunity+NMU+CGRP"
   }
 ];
 
@@ -263,35 +259,6 @@ const baselineState = {
   vagalSensitivity: 52,
   microgliaClearance: 45
 };
-
-const vivid = ["#22d3ee", "#a78bfa", "#fb7185", "#facc15", "#34d399", "#f97316", "#60a5fa", "#e879f9"];
-
-const organHeatmap = [
-  { name: "Skin", cytokine: 74, nerve: 91, repair: 38, colour: "#fb7185" },
-  { name: "Lung", cytokine: 88, nerve: 82, repair: 45, colour: "#38bdf8" },
-  { name: "Gut", cytokine: 78, nerve: 72, repair: 58, colour: "#facc15" },
-  { name: "Brain", cytokine: 62, nerve: 66, repair: 92, colour: "#a78bfa" }
-];
-
-const cellNetwork = [
-  { cell: "Mast cell", signal: "Histamine, proteases, IL-4/13", role: "Fast allergic amplifier", score: 86, colour: "#fb7185" },
-  { cell: "ILC2", signal: "IL-5, IL-13, amphiregulin", role: "Early type 2 responder", score: 90, colour: "#38bdf8" },
-  { cell: "TH2 cell", signal: "IL-4, IL-13, IL-31", role: "Adaptive allergic memory", score: 88, colour: "#a78bfa" },
-  { cell: "Eosinophil", signal: "Granules, IL-4/13 support", role: "Barrier inflammation and repair", score: 76, colour: "#f97316" },
-  { cell: "Microglia", signal: "IL-33/ST2 response", role: "Brain cleanup and synapse tuning", score: 82, colour: "#34d399" },
-  { cell: "Sensory neuron", signal: "TRPV1, TRPA1, JAK1", role: "Itch, pain, cough, avoidance", score: 94, colour: "#22d3ee" }
-];
-
-const pathwayRibbons = [
-  { from: "Damage", to: "IL-33/TSLP", strength: 82, colour: "#facc15" },
-  { from: "IL-33/TSLP", to: "ILC2/TH2", strength: 88, colour: "#38bdf8" },
-  { from: "ILC2/TH2", to: "IL-4/IL-13", strength: 92, colour: "#a78bfa" },
-  { from: "Mast cell/IgE", to: "Histamine", strength: 85, colour: "#fb7185" },
-  { from: "Cytokines", to: "Neuron firing", strength: 91, colour: "#22d3ee" },
-  { from: "Neuron firing", to: "Itch/cough/avoidance", strength: 89, colour: "#f97316" },
-  { from: "IL-33/ST2", to: "Microglial cleanup", strength: 78, colour: "#34d399" }
-];
-
 
 function clamp(v, min = 0, max = 100) {
   return Math.max(min, Math.min(max, v));
@@ -436,7 +403,6 @@ function App() {
           ["circuits", "Organ circuits", CircleDot],
           ["simulator", "Simulator", Activity],
           ["3d", "3D analytics", Atom],
-          ["visuals", "Animated visuals", Sparkles],
           ["biomarkers", "Biomarkers", TestTube2],
           ["treatments", "Treatment logic", Shield],
           ["evidence", "Evidence links", BookOpen],
@@ -492,37 +458,15 @@ function App() {
               <div className="chartBox">
                 <ResponsiveContainer width="100%" height={360}>
                   <BarChart data={cytokines}>
-                    <defs>
-                      <linearGradient id="gBrain" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#a78bfa" stopOpacity={1}/>
-                        <stop offset="100%" stopColor="#7c3aed" stopOpacity={0.8}/>
-                      </linearGradient>
-                      <linearGradient id="gItch" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#fb7185" stopOpacity={1}/>
-                        <stop offset="100%" stopColor="#e11d48" stopOpacity={0.8}/>
-                      </linearGradient>
-                      <linearGradient id="gAsthma" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#22d3ee" stopOpacity={1}/>
-                        <stop offset="100%" stopColor="#0284c7" stopOpacity={0.8}/>
-                      </linearGradient>
-                      <linearGradient id="gRepair" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#34d399" stopOpacity={1}/>
-                        <stop offset="100%" stopColor="#059669" stopOpacity={0.8}/>
-                      </linearGradient>
-                      <linearGradient id="gAllergy" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#facc15" stopOpacity={1}/>
-                        <stop offset="100%" stopColor="#f97316" stopOpacity={0.85}/>
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" opacity={0.18} />
-                    <XAxis dataKey="name" tick={{ fill: "currentColor" }} />
-                    <YAxis tick={{ fill: "currentColor" }} />
-                    <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #334155", borderRadius: 14, color: "#e5e7eb" }} />
-                    <Bar dataKey="brain" name="Brain/synapse" fill="url(#gBrain)" radius={[10, 10, 0, 0]} />
-                    <Bar dataKey="itch" name="Itch" fill="url(#gItch)" radius={[10, 10, 0, 0]} />
-                    <Bar dataKey="asthma" name="Asthma" fill="url(#gAsthma)" radius={[10, 10, 0, 0]} />
-                    <Bar dataKey="repair" name="Repair" fill="url(#gRepair)" radius={[10, 10, 0, 0]} />
-                    <Bar dataKey="allergy" name="Allergy" fill="url(#gAllergy)" radius={[10, 10, 0, 0]} />
+                    <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Bar dataKey="brain" name="Brain/synapse relevance" />
+                    <Bar dataKey="itch" name="Itch relevance" />
+                    <Bar dataKey="asthma" name="Asthma relevance" />
+                    <Bar dataKey="repair" name="Repair relevance" />
+                    <Bar dataKey="allergy" name="Allergy relevance" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -724,101 +668,6 @@ function App() {
           </Section>
         )}
 
-
-        {activeTab === "visuals" && (
-          <Section key="visuals">
-            <div className="grid two">
-              <Card title="Neuroimmune galaxy map" icon={Sparkles}>
-                <div className="galaxyPanel">
-                  {cellNetwork.map((c, i) => (
-                    <motion.div
-                      key={c.cell}
-                      className="galaxyNode"
-                      style={{
-                        "--node": c.colour,
-                        left: `${16 + (i % 3) * 32}%`,
-                        top: `${18 + Math.floor(i / 3) * 42}%`
-                      }}
-                      animate={{
-                        y: [0, -12, 0],
-                        scale: [1, 1.08, 1],
-                        boxShadow: [
-                          `0 0 20px ${c.colour}55`,
-                          `0 0 46px ${c.colour}aa`,
-                          `0 0 20px ${c.colour}55`
-                        ]
-                      }}
-                      transition={{ repeat: Infinity, duration: 2.4 + i * 0.25 }}
-                    >
-                      <strong>{c.cell}</strong>
-                      <span>{c.score}</span>
-                    </motion.div>
-                  ))}
-                  <motion.div className="galaxyCore" animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 18, ease: "linear" }}>
-                    Type 2<br/>neuroimmune<br/>core
-                  </motion.div>
-                </div>
-              </Card>
-
-              <Card title="Organ heatmap" icon={Layers3}>
-                <div className="heatmap">
-                  {organHeatmap.map((o) => (
-                    <div className="heatRow" key={o.name}>
-                      <h3>{o.name}</h3>
-                      <HeatCell label="Cytokine" value={o.cytokine} colour={o.colour} />
-                      <HeatCell label="Nerve" value={o.nerve} colour="#22d3ee" />
-                      <HeatCell label="Repair" value={o.repair} colour="#34d399" />
-                    </div>
-                  ))}
-                </div>
-              </Card>
-            </div>
-
-            <Card title="Animated pathway ribbons" icon={Route}>
-              <div className="ribbonBoard">
-                {pathwayRibbons.map((r, i) => (
-                  <motion.div
-                    className="ribbon"
-                    key={`${r.from}-${r.to}`}
-                    style={{ "--ribbon": r.colour }}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.07 }}
-                  >
-                    <span>{r.from}</span>
-                    <motion.div
-                      className="ribbonLine"
-                      animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
-                      transition={{ repeat: Infinity, duration: 1.6 + i * 0.15, ease: "linear" }}
-                    >
-                      <b style={{ width: `${r.strength}%` }} />
-                    </motion.div>
-                    <span>{r.to}</span>
-                    <strong>{r.strength}</strong>
-                  </motion.div>
-                ))}
-              </div>
-            </Card>
-
-            <div className="grid three">
-              {cellNetwork.map((c, i) => (
-                <motion.div
-                  key={c.cell}
-                  className="cellCard"
-                  style={{ "--cell": c.colour }}
-                  whileHover={{ y: -8, rotate: i % 2 ? 1 : -1 }}
-                >
-                  <div className="cellOrb" />
-                  <h3>{c.cell}</h3>
-                  <p>{c.role}</p>
-                  <small>{c.signal}</small>
-                  <ScoreLine label="Interaction intensity" value={c.score} />
-                </motion.div>
-              ))}
-            </div>
-          </Section>
-        )}
-
         {activeTab === "biomarkers" && (
           <Section key="biomarkers">
             <div className="grid two">
@@ -929,15 +778,9 @@ function App() {
           <Section key="evidence">
             <Card title="Clickable evidence library" icon={BookOpen}>
               <p>
-                These links open PubMed-friendly Boolean searches or point to the uploaded review source. The searches
-                use broader combinations such as OR and AND, because very long plain-text PubMed queries can return zero
-                results when automatic term mapping is not applied.
+                These links open evidence searches in PubMed or point to the uploaded review source. They are designed
+                for fast literature exploration, teaching, and manuscript planning.
               </p>
-              <div className="pubmedTip">
-                <strong>Search tip:</strong> PubMed works better with structured searches such as
-                <code>(IL-33 OR interleukin-33) AND (microglia OR Alzheimer OR amyloid)</code>
-                rather than one long phrase.
-              </div>
               <div className="evidenceGrid">
                 {evidenceLinks.map((e) => (
                   <motion.a whileHover={{ y: -5 }} className="evidenceCard" key={e.title} href={e.url} target={e.url.startsWith("#") ? "_self" : "_blank"} rel="noreferrer">
@@ -1246,23 +1089,6 @@ function Experiment({ title, text }) {
       <h3>{title}</h3>
       <p>{text}</p>
     </motion.div>
-  );
-}
-
-
-function HeatCell({ label, value, colour }) {
-  return (
-    <div className="heatCell">
-      <span>{label}</span>
-      <motion.div
-        className="heatFill"
-        style={{ "--heat": colour }}
-        initial={{ width: 0 }}
-        animate={{ width: `${value}%` }}
-        transition={{ duration: 0.8 }}
-      />
-      <b>{value}</b>
-    </div>
   );
 }
 
